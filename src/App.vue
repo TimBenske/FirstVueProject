@@ -3,13 +3,11 @@ import { ref } from "vue"
 const toDo = ref({ done: false })
 const toDoList = ref([])
 function submitfunction() {
-  console.log(toDo.value)
   toDoList.value.push({ ...toDo.value })
-  console.log(toDoList.value)
   toDo.value = { done: false }
 }
-function deletefunction(searchterm){
-  console.log(searchterm);
+function deletefunction(searchterm) {
+  toDoList.value = toDoList.value.filter((element) => element.title !== searchterm)
 }
 </script>
 
@@ -31,7 +29,6 @@ function deletefunction(searchterm){
       <span>{{ element.description }}</span>
       <button class="btn2" @click.prevent="deletefunction(element.title)">Delete</button>
     </div>
-    <div>{{ toDoList }}</div>
   </main>
 </template>
 
@@ -79,4 +76,5 @@ input {
   flex: 1;
   padding: 10px;
   margin-right: 5px;
-}</style>
+}
+</style>
